@@ -22,11 +22,14 @@ body {
 }
 
 #uploadedImage {
+    width: 100px;
+    height: 50px;
     margin-top: 20px;
 }
 
 #map {
-    height: 400px;
+    width: 480px;
+    height: 360px;
     width: 80%;
     margin: 20px auto;
 }
