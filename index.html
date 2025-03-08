@@ -9,14 +9,19 @@
 <body>
     <div class="container">
         <!-- Dropbox for photo upload -->
-        <div class="upload-area" id="uploadArea">
+        <div id="dropbox">
+            <p>Drag & Drop an image here or click to upload</p>
+            <input type="file" id="fileInput" accept="image/*" hidden>
+        </div>
+<!--         <div class="upload-area" id="uploadArea">
             <input type="file" id="fileInput" accept="image/*">
             <p>Drag & Drop your photo here</p>
         </div>
-
+ -->
         <!-- Container for displaying uploaded image -->
         <div class="image-container">
-            <img id="uploadedImage" src="" alt="Uploaded Photo" />
+            <img id="uploadedImage" style="max-width: 100%; display: none;" />
+<!--             <img id="uploadedImage" src="" alt="Uploaded Photo" /> -->
         </div>
     </div>
 
