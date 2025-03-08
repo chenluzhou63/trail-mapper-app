@@ -1,32 +1,40 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* General styles for the container */
+/* Container to hold both the dropbox and image side by side */
 .container {
     display: flex;
-    align-items: center;  /* Vertically align items in the center */
-    justify-content: space-around; /* Space out items evenly */
-    gap: 20px;  /* Optional gap between the elements */
+    justify-content: space-between; /* Space the items out */
+    gap: 20px; /* Optional space between items */
+    padding: 20px;
 }
 
 /* Style for the dropbox area */
 .upload-area {
     border: 2px dashed #ccc;
     padding: 20px;
-    width: 45%; /* Make it take 45% of the container's width */
-    height: 300px; /* Fixed height for consistency */
+    width: 45%; /* Ensure this takes up 45% of the container */
+    height: 300px; /* Set fixed height */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
+.upload-area input {
+    display: block;
+    margin-bottom: 10px;
+}
+
 /* Style for the uploaded image container */
 .image-container {
-    width: 45%; /* Make it take 45% of the container's width */
-    height: 300px; /* Fixed height for consistency */
+    width: 45%; /* Ensure this takes up 45% of the container */
+    height: 300px; /* Set fixed height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,13 +43,13 @@ body {
 /* Style for the uploaded image */
 #uploadedImage {
     max-width: 100%; /* Ensure image doesn't overflow */
-    max-height: 100%; /* Ensure image height is constrained */
-    object-fit: cover; /* Scale the image to fit the container */
+    max-height: 100%; /* Ensure image fits within container */
+    object-fit: contain; /* Preserve aspect ratio */
 }
 
+/* Map styles */
 #map {
-    width: 480px;
-    height: 360px;
-    width: 80%;
-    margin: 20px auto;
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
 }
