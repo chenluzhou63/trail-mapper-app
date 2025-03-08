@@ -4,27 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trail Mapper</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/exif-js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>Upload a Photo to See Its Location</h1>
     <div class="container">
+        <!-- Dropbox for photo upload -->
         <div class="upload-area">
             <input type="file" id="fileInput" accept="image/*">
             <p>Drag & Drop your photo here</p>
         </div>
+
+        <!-- Container for displaying uploaded image -->
         <div class="image-container">
             <img id="uploadedImage" src="" alt="Uploaded Photo" />
         </div>
     </div>
 
-    <!-- Map Container -->
+    <!-- Map for displaying image location -->
     <div id="map"></div>
 
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/exif-js"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const mapContainer = document.getElementById('map');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+
+                    // Extract EXIF data to get GPS info
+                    EXIF.getData(file, function() {
+                        const latitude = EXIF.getTag(file, 'GPSLatitude');
+                        const longitude = EXIF.getTag(file, 'GPSLongitude');
+                        
+                        if (latitude && longitude) {
+                            displayMap(latitude, longitude);
+                        } else {
+                            alert('No GPS data found in this image.');
+                        }
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function displayMap(latitude, longitude) {
+            const map = new google.maps.Map(mapContainer, {
+                center: { lat: latitude, lng: longitude },
+                zoom: 14
+            });
+            new google.maps.Marker({
+                position: { lat: latitude, lng: longitude },
+                map: map,
+                title: 'Photo Location'
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
 </body>
 </html>
