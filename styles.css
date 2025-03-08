@@ -50,6 +50,7 @@
 /* Map styles */
 #map {
     width: 100%;
-    height: 400px;
+    width: 480;
+    height: 360px;
     margin-top: 20px;
 }
