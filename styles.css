@@ -3,28 +3,40 @@ body {
     text-align: center;
 }
 
-#dropbox {
-    width: 300px;
-    height: 150px;
-    border: 2px dashed #aaa;
+/* General styles for the container */
+.container {
+    display: flex;
+    align-items: center;  /* Vertically align items in the center */
+    justify-content: space-around; /* Space out items evenly */
+    gap: 20px;  /* Optional gap between the elements */
+}
+
+/* Style for the dropbox area */
+.upload-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    width: 45%; /* Make it take 45% of the container's width */
+    height: 300px; /* Fixed height for consistency */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    cursor: pointer;
-    margin: 20px auto;
-    padding: 10px;
 }
 
-#dropbox.hover {
-    border-color: #333;
-    background-color: #f9f9f9;
+/* Style for the uploaded image container */
+.image-container {
+    width: 45%; /* Make it take 45% of the container's width */
+    height: 300px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Style for the uploaded image */
 #uploadedImage {
-    width: 100px;
-    height: 50px;
-    margin-top: 20px;
+    max-width: 100%; /* Ensure image doesn't overflow */
+    max-height: 100%; /* Ensure image height is constrained */
+    object-fit: cover; /* Scale the image to fit the container */
 }
 
 #map {
